@@ -1,17 +1,15 @@
 import { useState } from "react";
 import config from "./config";
 import RecipeCard from "./components/RecipeCard";
-import NutritionChart, { Nutrition } from "./components/NutritionChart";
+import NutritionChart from "./components/NutritionChart";
 import SearchForm from "./components/SearchForm";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import { Recipe } from "./types";
+import { Nutrition, Recipe, RecipeDetail } from "./types";
 
 import { AppBar, Box, Paper, Toolbar, Typography } from "@mui/material";
 import { Axios } from "axios";
-import RecipeDetailModal, {
-  RecipeDetail,
-} from "./components/RecipeDetailModal";
+import RecipeDetailModal from "./components/RecipeDetailModal";
 import ErrorAlert from "./components/ErrorAlert";
 
 const webClient = new Axios({

@@ -1,14 +1,5 @@
 import { Box, Modal, Typography } from "@mui/material";
-import { Recipe } from "../types";
-
-export interface Step {
-  number: number;
-  step: string;
-}
-export interface RecipeDetail {
-  name: string;
-  steps: Array<Step>;
-}
+import { Recipe, RecipeDetail } from "../types";
 
 export interface RecipeDetailModalProps {
   open: boolean;

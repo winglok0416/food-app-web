@@ -5,21 +5,7 @@ import Typography from "@mui/material/Typography";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import useWindowSize from "../hook/useWindowSize";
-
-export interface Nutrition {
-  name: string;
-  calories: number;
-  serving_size_g: number;
-  fat_total_g: number;
-  fat_saturated_g: number;
-  protein_g: number;
-  sodium_mg: number;
-  potassium_mg: number;
-  cholesterol_mg: number;
-  carbohydrates_total_g: number;
-  fiber_g: number;
-  sugar_g: number;
-}
+import { Nutrition } from "../types";
 
 export interface NutritionChartProps {
   nutrition?: Nutrition | null;

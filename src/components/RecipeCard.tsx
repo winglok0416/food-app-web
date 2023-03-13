@@ -73,32 +73,6 @@ const RecipeCard: React.FunctionComponent<RecipeCardProps> = ({
                   {recipe.likes}
                 </Typography>
               </Box>
-              {/* <Box
-                sx={{
-                  display: "-webkit-box",
-                  WebkitLineClamp: "4",
-                  WebkitBoxOrient: "vertical",
-                  // alignItems: "flex-start",
-                  // height: 100,
-                  textAlign: "left",
-                  textOverflow: "ellipsis",
-                  overflow: "hidden",
-                  // whiteSpace: "normal",
-                  width: "100%",
-                }}
-              >
-                <Typography
-                  variant="body2"
-                  component="p"
-                  marginLeft={0.5}
-                  align="left"
-                >
-                  Here is some desc Here is some descHere is some descHere is
-                  some descHere is some descHere is some descHere is some
-                  descHere is some descHere is some descHere is some descHere is
-                  some descHere is some descHere is some descHere is some desc
-                </Typography>
-              </Box> */}
               <Box
                 sx={{
                   display: "flex",
