@@ -7,7 +7,6 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import { Recipe } from "./types";
 
-import "./App.css";
 import { AppBar, Box, Paper, Toolbar, Typography } from "@mui/material";
 import { Axios } from "axios";
 import RecipeDetailModal, {
