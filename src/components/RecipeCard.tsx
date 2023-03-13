@@ -18,7 +18,7 @@ const RecipeCard: React.FunctionComponent<RecipeCardProps> = ({
   onMoreButtonClick
 }: RecipeCardProps) => {
   return (
-    <Grid item sm={4} xs={6} sx={{ height: 420 }}>
+    <Grid item sm={4} xs={6}>
       <Paper elevation={3}>
         {recipe === undefined || recipe == null ? (
           <Paper sx={{ display: "flex", justifyContent: "center" }}>

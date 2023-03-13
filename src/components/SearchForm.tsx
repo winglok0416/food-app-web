@@ -4,11 +4,12 @@ import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import Button from "@mui/material/Button";
-import LoadingButton from '@mui/lab/LoadingButton';
+import LoadingButton from "@mui/lab/LoadingButton";
 import Paper from "@mui/material/Paper";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
+import useWindowSize from "../hook/useWindowSize";
 
 export interface SearchFormProps {
   onSearch: (ingredient: string) => void;
@@ -16,6 +17,7 @@ export interface SearchFormProps {
 }
 
 const SearchForm = ({ onSearch, loading }: SearchFormProps) => {
+  const windowSize = useWindowSize();
   const [ingredient, setIngredient] = useState("");
 
   const handleTextInputChange = (
@@ -30,7 +32,10 @@ const SearchForm = ({ onSearch, loading }: SearchFormProps) => {
         <Box
           component="form"
           sx={{
-            "& .MuiTextField-root": { m: 1, width: "40ch" },
+            "& .MuiTextField-root": {
+              m: 1,
+              width: windowSize.width!! <= 600 ? "20ch" : "40ch",
+            },
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -51,10 +56,12 @@ const SearchForm = ({ onSearch, loading }: SearchFormProps) => {
           <Box sx={{ alignSelf: "center" }}>
             <LoadingButton
               variant="contained"
-              style={{
-                // color: "white",
-                // backgroundColor: "orange",
-              }}
+              style={
+                {
+                  // color: "white",
+                  // backgroundColor: "orange",
+                }
+              }
               onClick={() => onSearch(ingredient)}
               loading={loading}
               loadingIndicator="Loading…"

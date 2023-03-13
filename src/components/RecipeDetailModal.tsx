@@ -23,9 +23,11 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: "90%",
+  minWidth: 400,
+  maxWidth: 600,
   bgcolor: "background.paper",
-  border: "2px solid #000",
+//   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
   maxHeight: "80%",
@@ -76,15 +78,16 @@ const RecipeDetailModal = ({
           </Typography>
           <Typography
             id="modal-modal-subtitle"
-            variant="subtitle2"
-            component="h3"
+            variant="body1"
+            component="p"
+            sx={{ fontSize: "20px", marginBottom: 0 }}
           >
             Steps
           </Typography>
           {recipeDetails?.map((recipeDetail) =>
             recipeDetail.steps.map((val, index) => (
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                {`${index}. ${val.step}`}
+              <Typography id="modal-modal-description" sx={{ mt: 1 }}>
+                {`Step ${index} - ${val.step}`}
               </Typography>
             ))
           )}
