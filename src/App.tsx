@@ -12,6 +12,7 @@ import { Axios } from "axios";
 import RecipeDetailModal, {
   RecipeDetail,
 } from "./components/RecipeDetailModal";
+import ErrorAlert from "./components/ErrorAlert";
 
 const webClient = new Axios({
   baseURL: config.backendUrl,
@@ -25,26 +26,28 @@ function App() {
     { nutrition: Nutrition; recipes: Array<Recipe> } | null | undefined
   >(null);
   const [recipeData, setRecipeData] = useState<Recipe | null>(null);
-  const [recipeDetailData, setRecipeDetailData] = useState<Array<RecipeDetail> | null>(
-    null
-  );
+  const [recipeDetailData, setRecipeDetailData] =
+    useState<Array<RecipeDetail> | null>(null);
+  const [recipeDataLoading, setRecipeDataLoading] = useState(false);
+
   const [recipeDetailModalOpen, setRecipeDetailModalOpen] = useState(false);
-  const [recipeDetailModalLoading, setRecipeDetailModalLoading] = useState(false);
+  const [recipeDetailModalLoading, setRecipeDetailModalLoading] =
+    useState(false);
 
-
-  const [loading, setLoading] = useState(false);
+  const [errorAlertOpen, setErrorAlertOpen] = useState(false);
 
   const handleFoodInfoSearch = async (ingredient: string) => {
     try {
-      setLoading(true);
+      setRecipeDataLoading(true);
       const response = await webClient.get("/food/info", {
         params: { query: ingredient },
       });
       setFoodInfoData(JSON.parse(response.data));
     } catch (error) {
       console.error(error);
+      setErrorAlertOpen(true);
     } finally {
-      setLoading(false);
+      setRecipeDataLoading(false);
     }
   };
 
@@ -58,6 +61,7 @@ function App() {
       console.log(JSON.parse(response.data));
     } catch (error) {
       console.error(error);
+      setErrorAlertOpen(true);
     } finally {
       setRecipeDetailModalLoading(false);
     }
@@ -67,6 +71,10 @@ function App() {
     setRecipeDetailModalOpen(false);
     setRecipeData(null);
     setRecipeDetailData(null);
+  };
+
+  const handleErrorAlertClose = () => {
+    setErrorAlertOpen(false);
   };
 
   return (
@@ -90,10 +98,13 @@ function App() {
               </Toolbar>
             </Container>
           </AppBar>
-          <SearchForm onSearch={handleFoodInfoSearch} loading={loading} />
+          <SearchForm
+            onSearch={handleFoodInfoSearch}
+            loading={recipeDataLoading}
+          />
           <NutritionChart
             nutrition={foodInfoData?.nutrition}
-            loading={loading}
+            loading={recipeDataLoading}
           />
           {foodInfoData === undefined || foodInfoData === null ? (
             <Grid item xs={12}>
@@ -107,7 +118,7 @@ function App() {
                         height: 200,
                       }}
                     >
-                      <Typography>No data to display</Typography>
+                      <Typography>We will show 10 recipes related to the ingredient you search</Typography>
                     </Box>
                   </Paper>
                 </Box>
@@ -133,6 +144,7 @@ function App() {
         recipeDetails={recipeDetailData}
         loading={recipeDetailModalLoading}
       />
+      <ErrorAlert open={errorAlertOpen} onClose={handleErrorAlertClose} />
     </div>
   );
 }
