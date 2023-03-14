@@ -1,14 +1,11 @@
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
-import Button from "@mui/material/Button";
 import LoadingButton from "@mui/lab/LoadingButton";
 import Paper from "@mui/material/Paper";
 
-import { useEffect, useState } from "react";
-import { Typography } from "@mui/material";
+import { useState } from "react";
 import useWindowSize from "../hook/useWindowSize";
 
 export interface SearchFormProps {
